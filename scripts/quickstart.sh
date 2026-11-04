@@ -71,8 +71,12 @@ java -Xmx4g -cp "$JAR" org.ohnlp.medtagger.fit.Main "$IN" "$OUT" "$RULES" "$SECT
 echo
 say "Output files:"
 ls -l "$OUT"
-FIRST="$(find "$OUT" -type f | head -1)"
-if [[ -n "$FIRST" ]]; then
-  echo; say "Preview of $(basename "$FIRST"):"
-  head -c 2000 "$FIRST"; echo
+
+echo
+if command -v python3 >/dev/null 2>&1; then
+  say "Found concepts (also saved as $OUT/results.csv):"
+  python3 "$REPO/scripts/xml_to_table.py" "$OUT"
+else
+  FIRST="$(find "$OUT" -name '*.xml' -type f | head -1)"
+  [[ -n "$FIRST" ]] && { say "Preview of $(basename "$FIRST"):"; head -c 2000 "$FIRST"; echo; }
 fi
