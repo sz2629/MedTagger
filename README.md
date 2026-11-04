@@ -53,6 +53,14 @@ what to do/extract, and this directory is expected as input for the RULEDIR para
     
 
 
+# Quick Start on macOS (build from source)
+If `java`, `mvn` or `ant` are "command not found", run the one-time setup, then the quick start:
+```
+bash scripts/setup_mac_env.sh   # installs JDK 11, Maven, Ant via Homebrew; asks for a GitHub token (read:packages)
+bash scripts/quickstart.sh      # builds target/medtagger.jar and runs the PASC/COVID ruleset on testdata
+```
+Run your own notes with `bash scripts/quickstart.sh INPUT_DIR OUTPUT_DIR RULE_DIR`. Add `--dist` to also build `MedTagger.zip` with Ant.
+
 # For Developers
 1. Clone this repository
 2. You will need JDK8 or above, Apache Maven, and Apache Ant installed
